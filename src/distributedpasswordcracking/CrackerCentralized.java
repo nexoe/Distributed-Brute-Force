@@ -43,7 +43,7 @@ public class CrackerCentralized {
         final List<UserInfoClearText> result = new ArrayList<UserInfoClearText>();
         FileReader fileReader = null;
         try {
-            fileReader = new FileReader("webster-dictionary.txt");
+            fileReader = new FileReader("webster-dictionary-reduced.txt");
             final BufferedReader dictionary = new BufferedReader(fileReader);
             while (true) {
                 final String dictionaryEntry = dictionary.readLine();
