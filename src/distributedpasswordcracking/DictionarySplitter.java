@@ -37,8 +37,20 @@ public class DictionarySplitter {
     public ArrayList<List<String>> split(int numberOfSplits){
         ArrayList<List<String>> splits = new ArrayList<>();
         int linesPerSplit = dictionaryArray.size()/numberOfSplits;
+        int leftover = 0;
+        if(splits.size() % 2 != 0){
+            leftover = dictionaryArray.size() % numberOfSplits;
+        }
         for (int i = 0; i < numberOfSplits; i++) {
-            splits.add(dictionaryArray.subList((linesPerSplit*i),(linesPerSplit*(i+1))));
+            if(i == numberOfSplits){
+                splits.add(dictionaryArray.subList((linesPerSplit*i),(linesPerSplit*(i+1)+ leftover)));
+            } else {
+                splits.add(dictionaryArray.subList((linesPerSplit*i),(linesPerSplit*(i+1))));
+            }
+
+        }
+        for (int i = 0; i < splits.size(); i++) {
+            System.out.println(splits.get(i).size());
         }
         return splits;
     };
