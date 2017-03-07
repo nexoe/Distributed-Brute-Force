@@ -15,7 +15,7 @@ public class Starter {
     private static List<UserInfo> userlist;
 
     public static void main(String[] args) throws IOException {
-        int numberOfThreads = 3;
+        int numberOfThreads = 4;
         ArrayList<List<String>> dictionaryLists = new DictionarySplitter().split(numberOfThreads);
         userlist = PasswordFileHandler.readPasswordFile("passwords.txt");
 

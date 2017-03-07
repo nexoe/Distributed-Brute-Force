@@ -37,13 +37,13 @@ public class DictionarySplitter {
     public ArrayList<List<String>> split(int numberOfSplits){
         ArrayList<List<String>> splits = new ArrayList<>();
         int linesPerSplit = dictionaryArray.size()/numberOfSplits;
-        int leftover = 0;
-        if(splits.size() % 2 != 0){
-            leftover = dictionaryArray.size() % numberOfSplits;
-        }
+
+        int leftover = dictionaryArray.size() % numberOfSplits;
+        System.out.println(leftover);
+
         for (int i = 0; i < numberOfSplits; i++) {
-            if(i == numberOfSplits){
-                splits.add(dictionaryArray.subList((linesPerSplit*i),(linesPerSplit*(i+1)+ leftover)));
+            if(i == numberOfSplits-1){
+                splits.add(dictionaryArray.subList((linesPerSplit*i),(linesPerSplit*(i+1)+leftover)));
             } else {
                 splits.add(dictionaryArray.subList((linesPerSplit*i),(linesPerSplit*(i+1))));
             }
