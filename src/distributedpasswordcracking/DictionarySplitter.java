@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class DictionarySplitter {
 
-    private FileReader fileReader = new FileReader("webster-dictionary-reduced.txt");
+    private FileReader fileReader = new FileReader("webster-dictionary.txt");
     private BufferedReader dictionary = new BufferedReader(fileReader);
     private ArrayList<String> dictionaryArray = new ArrayList<String>();
 
@@ -31,7 +31,7 @@ public class DictionarySplitter {
 
 
     /**
-     * Splits the dictionary into specified amount of seperats lists
+     * Splits the dictionary into specified amount of seperate lists
      * @param numberOfSplits number of lists wanted
      **/
     public ArrayList<List<String>> split(int numberOfSplits){

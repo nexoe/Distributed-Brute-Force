@@ -12,16 +12,17 @@ public class Starter {
 
     private static ArrayList<Thread> threads = new ArrayList<>();
     private static List<UserInfoClearText> result = Collections.synchronizedList(new ArrayList<>());
+    private static List<UserInfo> userlist;
 
     public static void main(String[] args) throws IOException {
         int numberOfThreads = 2;
         ArrayList<List<String>> dictionaryLists = new DictionarySplitter().split(numberOfThreads);
-        ArrayList<List<UserInfo>> userInfoLists = new UsersSplitter().split(numberOfThreads);
+        userlist = PasswordFileHandler.readPasswordFile("passwords.txt");
 
 
 
         for (int i = 0; i < numberOfThreads; i++) {
-            threads.add(new Thread(new Cracker(dictionaryLists.get(i),result,userInfoLists.get(i))));
+            threads.add(new Thread(new Cracker(dictionaryLists.get(i),result,userlist)));
         }
 
         System.out.println("Starting cracking");
