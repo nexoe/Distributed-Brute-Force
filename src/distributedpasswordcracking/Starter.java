@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by rasmu on 02-03-2017.
@@ -15,7 +16,10 @@ public class Starter {
     private static List<UserInfo> userlist;
 
     public static void main(String[] args) throws IOException {
-        int numberOfThreads = 4;
+        System.out.println("How many threads do you wish to use");
+        Scanner textscan = new Scanner(System.in);
+        int numberOfThreads = textscan.nextInt();
+
         ArrayList<List<String>> dictionaryLists =  new DictionarySplitter("webster-dictionary.txt").split(numberOfThreads);
         userlist = PasswordFileHandler.readPasswordFile("passwords.txt");
 
@@ -23,7 +27,8 @@ public class Starter {
             threads.add(new Thread(new Cracker(dictionaryLists.get(i),result,userlist)));
         }
 
-        System.out.println("Starting cracking");
+        System.out.println("Cracking with " + numberOfThreads + " threads");
+
         long startTime = System.currentTimeMillis();
         for (int i = 0; i < threads.size(); i++) {
             threads.get(i).start();
