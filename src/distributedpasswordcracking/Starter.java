@@ -16,10 +16,8 @@ public class Starter {
 
     public static void main(String[] args) throws IOException {
         int numberOfThreads = 4;
-        ArrayList<List<String>> dictionaryLists = new DictionarySplitter().split(numberOfThreads);
+        ArrayList<List<String>> dictionaryLists =  new DictionarySplitter("webster-dictionary.txt").split(numberOfThreads);
         userlist = PasswordFileHandler.readPasswordFile("passwords.txt");
-
-
 
         for (int i = 0; i < numberOfThreads; i++) {
             threads.add(new Thread(new Cracker(dictionaryLists.get(i),result,userlist)));
@@ -33,13 +31,15 @@ public class Starter {
 
 
         while(isThreadsAlive() == true){
-            //Keep running until all threads are done
+            //Wait until all threads are done
         }
+
 
         long endtime = System.currentTimeMillis();
         System.out.println(result);
         long  usedTime = endtime - startTime;
         System.out.println("Used time: " + usedTime / 1000 + " seconds = " + usedTime / 60000.0 + " minutes");
+        System.out.println("Users found: " + result.size());
 
     }
 

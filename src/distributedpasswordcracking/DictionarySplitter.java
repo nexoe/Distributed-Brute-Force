@@ -13,11 +13,13 @@ import java.util.List;
  */
 public class DictionarySplitter {
 
-    private FileReader fileReader = new FileReader("webster-dictionary.txt");
-    private BufferedReader dictionary = new BufferedReader(fileReader);
+    private FileReader fileReader;
+    private BufferedReader dictionary;
     private ArrayList<String> dictionaryArray = new ArrayList<String>();
 
-    public DictionarySplitter() throws FileNotFoundException {
+    public DictionarySplitter(String filename) throws FileNotFoundException {
+        fileReader = new FileReader(filename);
+        dictionary = new BufferedReader(fileReader);
         String entry = "";
         do {
             try {
@@ -39,7 +41,6 @@ public class DictionarySplitter {
         int linesPerSplit = dictionaryArray.size()/numberOfSplits;
 
         int leftover = dictionaryArray.size() % numberOfSplits;
-        System.out.println(leftover);
 
         for (int i = 0; i < numberOfSplits; i++) {
             if(i == numberOfSplits-1){
@@ -48,9 +49,6 @@ public class DictionarySplitter {
                 splits.add(dictionaryArray.subList((linesPerSplit*i),(linesPerSplit*(i+1))));
             }
 
-        }
-        for (int i = 0; i < splits.size(); i++) {
-            System.out.println(splits.get(i).size());
         }
         return splits;
     };
