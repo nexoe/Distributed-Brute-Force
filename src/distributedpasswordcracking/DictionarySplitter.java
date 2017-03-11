@@ -37,9 +37,12 @@ public class DictionarySplitter {
      * @param numberOfSplits number of lists wanted
      **/
     public ArrayList<List<String>> split(int numberOfSplits){
+        //Opretter et nyt array til at holde på "splits"
         ArrayList<List<String>> splits = new ArrayList<>();
+        //Udregner antal linjer pr. "split" ud fra dictionaryArray's størrelse / antal "splits"
         int linesPerSplit = dictionaryArray.size()/numberOfSplits;
-
+        //Udregner det evt. overskydende, der er tilbage efter at antal linjer pr. "split" er udregnet.
+        //Dette sker med modulus, som så smider de overskydende antal linjer ind i en variable "leftover".
         int leftover = dictionaryArray.size() % numberOfSplits;
 
         for (int i = 0; i < numberOfSplits; i++) {
